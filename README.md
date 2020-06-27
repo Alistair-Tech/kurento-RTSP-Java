@@ -17,7 +17,7 @@ Kurento Media Server needs to be installed on the local computer for the applica
 
 1. Clone the project to your local computer.
 2. Go to the project folder.
-3. Start the `coturn` and media server.
+3. Start the `coturn` and media servers.
 
       ```sudo service coturn start```
       
