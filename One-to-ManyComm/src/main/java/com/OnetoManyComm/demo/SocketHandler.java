@@ -64,8 +64,9 @@ public class SocketHandler extends TextWebSocketHandler{
 	    	sessions.remove(sessionId);
 	    }
 	}
-	
+	//Implementation of presenter's session
 	private synchronized void presenter(final WebSocketSession session, JsonObject jsonMessage)throws IOException {
+		//If no presenter exists so far
 		if (presenterUserSession == null) {
 			presenterUserSession = new UserSession(session);
 
@@ -111,8 +112,9 @@ public class SocketHandler extends TextWebSocketHandler{
 		    session.sendMessage(new TextMessage(response.toString()));
 		}
 	}
-	
+	//Implementation of viewer's session
 	private synchronized void viewer(final WebSocketSession session, JsonObject jsonMessage) throws IOException {
+		//If no presenter exists so far
 		if (presenterUserSession == null || presenterUserSession.getWebRtcEndpoint() == null) {
 			JsonObject response = new JsonObject();
 		    response.addProperty("id", "viewerResponse");
@@ -162,7 +164,7 @@ public class SocketHandler extends TextWebSocketHandler{
 		    nextWebRtc.gatherCandidates();
 		}
 	}
-	
+	//Processes web socket messages received from multiple clients
 	@Override
 	public void handleTextMessage(WebSocketSession session, TextMessage message) throws IOException {
 		JsonObject jsonMessage = gson.fromJson(message.getPayload(), JsonObject.class);
@@ -204,7 +206,7 @@ public class SocketHandler extends TextWebSocketHandler{
 	    	break;
 		}
 	}
-
+	//Closing session's connection
 	@Override
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
 		stop(session);
