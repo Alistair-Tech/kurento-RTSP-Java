@@ -1,3 +1,5 @@
+#Kurento-WebRTC
+
 The web application is capable of doing the following:
 1. Receive an WebRTC media stream from a URI
 2. Broadcast the media stream to multiple end users using WebRTC.
