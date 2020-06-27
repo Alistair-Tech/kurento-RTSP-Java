@@ -1,4 +1,4 @@
-var connection = new WebSocket("ws://127.0.0.1:8080/socket");
+var connection = new WebSocket("ws://127.0.0.1:8080/socket");//Create new web socket connection at the URL where the socket handler has been registered
 var video;
 var webRtcPeer;
 var presenterButton = document.getElementById("presenter");
@@ -8,7 +8,7 @@ var stopButton = document.getElementById("stop");
 connection.onopen = () => {
 	alert("Successfully opened connection.");
 };
-
+//Event handler for when the window loads
 window.onload = () => {
 	alert("Working");
 	video = document.getElementsByTagName("video")[0];
@@ -17,7 +17,7 @@ window.onload = () => {
 	viewerButton.disabled = false;
 	stopButton.disabled = true;*/
 };
-
+//Event handler for when the window is closed
 window.onbeforeunload = function() {
 	connection.close();
 };
@@ -104,7 +104,6 @@ function viewerResponse(message) {
 
 function presenter() {
 	if (!webRtcPeer) {
-		//showSpinner(video);
 
 		var options = {
 			localVideo : video,
@@ -137,7 +136,6 @@ function onOfferPresenter(error, offerSdp) {
 
 function viewer() {
 	if (!webRtcPeer) {
-		//showSpinner(video);
 
 		var options = {
 			remoteVideo : video,
@@ -191,7 +189,6 @@ function dispose() {
 		webRtcPeer.dispose();
 		webRtcPeer = null;
 	}
-	//hideSpinner(video);
 
 	disableStopButton();
 }
@@ -201,19 +198,4 @@ function sendMessage(message) {
 	var jsonMessage = JSON.stringify(message);
 	alert('Sending message: ' + jsonMessage);
 	connection.send(jsonMessage);
-}
-
-/*function showSpinner() {
-	for (var i = 0; i < arguments.length; i++) {
-		arguments[i].poster = './img/transparent-1px.png';
-		arguments[i].style.background = 'center transparent url("./img/spinner.gif") no-repeat';
-	}
-}
-
-function hideSpinner() {
-	for (var i = 0; i < arguments.length; i++) {
-		arguments[i].src = '';
-		arguments[i].poster = './img/webrtc.png';
-		arguments[i].style.background = '';
-	}
 }*/
