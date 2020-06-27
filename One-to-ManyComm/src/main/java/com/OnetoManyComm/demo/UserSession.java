@@ -9,6 +9,7 @@ import org.springframework.web.socket.WebSocketSession;
 
 import com.google.gson.JsonObject;
 
+//The class contains getters, setters and other relevant info needed to define each session (Presenter and Viewers)
 public class UserSession {
 	private final WebSocketSession session;
 	private WebRtcEndpoint webRtcEndpoint;
