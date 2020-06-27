@@ -1,4 +1,4 @@
-The web application should be capable of doing the following:
+The web application is capable of doing the following:
 1. Receive an WebRTC media stream from a URI
 2. Broadcast the media stream to multiple end users using WebRTC.
 3. Ensure error handling in case of broken streams and add multiple streams
