@@ -31,7 +31,7 @@ public class SocketHandler extends TextWebSocketHandler{
 	
 	private MediaPipeline pipeline;
 	private UserSession presenterUserSession;
-	
+	//Returns error messages
 	private void handleErrorResponse(Throwable throwable, WebSocketSession session, String responseId)throws IOException {
 		stop(session);
 	    JsonObject response = new JsonObject();
@@ -40,9 +40,10 @@ public class SocketHandler extends TextWebSocketHandler{
 	    response.addProperty("message", throwable.getMessage());
 	    session.sendMessage(new TextMessage(response.toString()));
 	}
-	
+	//Ends a session
 	private synchronized void stop(WebSocketSession session) throws IOException {
 	    String sessionId = session.getId();
+	    //Presenter wants to end session
 	    if (presenterUserSession != null && presenterUserSession.getSession().getId().equals(sessionId)) {
 	    	for (UserSession viewer : sessions.values()) {
 	    		JsonObject response = new JsonObject();
@@ -55,6 +56,7 @@ public class SocketHandler extends TextWebSocketHandler{
 	    	pipeline = null;
 	    	presenterUserSession = null;
 	    }
+	    //Viewer wants to end session
 	    else if (sessions.containsKey(sessionId)) {
 	    	if (sessions.get(sessionId).getWebRtcEndpoint() != null) {
 	    		sessions.get(sessionId).getWebRtcEndpoint().release();
