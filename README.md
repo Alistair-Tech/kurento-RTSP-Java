@@ -27,4 +27,4 @@ Kurento Media Server needs to be installed on the local computer for the applica
 
       ```mvn -U clean spring-boot:run```
       
-The application will start running on port 8080 in the localhost by default. Therefore, open the URL [https://localhost:8080/](https://localhost:8080/) in a WebRTC compliant browser
+The application will start running on port 8080 in the localhost by default. Therefore, open the URL [http://localhost:8080/](https://localhost:8080/) in a WebRTC compliant browser
